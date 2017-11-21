@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <src="https://code.jquery.com/jquery-3.2.1.min.js"integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous">
+</script>
+    
+ 
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+  
+     <%= csrf_meta_tag %>
+</head>
+<body>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to "Nermin |Flowers Market", root_path , class: "navbar-brand" %>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <!-- Sign up Log in -->
+
+        <div class="navbar-form navbar-right">
+         <ul class="nav navbar-nav navbar-right">
+              <li>
+                  </li>
+                <% if user_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete, class:"btn btn-default") %>  </li> 
+ <li>
+  <%= link_to('Edit User', edit_user_registration_path, :method => :get, class:"btn btn-default" ) %>        
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path, :method => :get, class:"btn btn-success")  %></li> <li>
+ <%= link_to('Register', new_user_registration_path, :method => :get, class:"btn btn-danger" ) %>   
+
+  </li>
+<% end %>
+            </ul>
+        </div>
+
+
+
+        <!-- Search Box -->
+        <%= form_tag(products_path, method: "get", class: "navbar-form navbar-right") do %>
+                    <%= text_field_tag(:q, "", type: "text", class: "form-control", placeholder: "search text") %>
+                    <%= submit_tag("Search", class: "btn btn-primary") %>
+                <% end %>
+
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="">
+                  <a href="../">Home</a>
+                </li>
+           <li><a href="../products/">Products</a></li>            
+                 <li><%= link_to 'About', static_pages_about_path %></li>
+                <li><%= link_to 'Contact', static_pages_contact_path %></li></ul>
+       
+        </ul>
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>  
+  
+  <section class="container-fluid minpage">
+
+    <!-- Flash Notice Tags -->
+    <% if notice %>
+      <div id="notice" class="alert alert-warning"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div id="alert" class="alert alert-danger"><%= alert %></div>
+    <% end %>
+
+    <%= yield %>
+  </section>
+
+  
+ <!--Footer Section -->
+  <div class="footer-container">
+      <h4 class="_14">Follow me on</h4>
+    <div class="social-icons">
+        <li><a href="https://www.facebook.com/NerminMahdi20" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+        <li><a href="https://twitter.com/nerminmahdi" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/nerminmahdi/" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
+    </div>
+    <p> &copy; Web Development by Nermin M. Mahdi 2017</p>
+</div>
+
+  <!--End Footer Section -->
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+
+<p id="notice"><%= notice %></p>
+
+<h1>Best Flowers</h1>
+ <%= link_to 'New Product', new_product_path %>
+
+<div class= container>
+<div align="center" class="category">
+        <img src="/assets/twellp.jpg" />
+        </div>
+        <div align="center" class="category">
+        <img src="../assets/flower.jpg" />
+        </div>
+        <div align="center" class="category">
+        <img src="../assets/1ff.jpg" />
+         </div> 
+        <div align="center" class="category">
+        <img src="../assets/ya.jpg" />
+</div> 
+</div>
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <% @products.each do |product| %>
+    <div class="columns">
+      <ul class="product">
+ <li class="header"><%= product.name %></li>
+ <li><%= product.description %></li>
+ <li class="data"><%= image_tag(product.image_url, class: "img-responsive") %></li>
+ <li class="header"><%= product.color%></li>
+ <li class="action"><%= link_to 'Show', product %> 
+ <%= link_to 'Edit', edit_product_path(product) %>
+ <%= link_to 'Destroy', product, method: :delete, data:{ confirm: 'Are you sure?' } %></a></li>
+      </ul>
+</div>
+    <% end %>
+  </div>
+</div>
+  
+<br>
+
+
