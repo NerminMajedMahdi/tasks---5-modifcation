@@ -25,7 +25,9 @@ gem 'devise'
 
 gem 'jquery-rails'
 
+	
 
+gem 'thin'
 
 
 # Use Puma as the app server
