@@ -44,14 +44,14 @@
                   </li>
                 <% if user_signed_in? %>
   <li>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete, class:"btn btn-default") %>  </li> 
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete, class:"btn btn-default fa fa-sign-in") %>  </li> 
  <li>
-  <%= link_to('Edit User', edit_user_registration_path, :method => :get, class:"btn btn-default" ) %>        
+  <%= link_to('Edit User', edit_user_registration_path, :method => :get, class:"btn btn-default fa fa-pencil-square-o" ) %>        
   </li>
 <% else %>
   <li>
-  <%= link_to('Login', new_user_session_path, :method => :get, class:"btn btn-success")  %></li> <li>
- <%= link_to('Register', new_user_registration_path, :method => :get, class:"btn btn-danger" ) %>   
+  <%= link_to('Login', new_user_session_path, :method => :get, class:"btn btn-default fa fa-sign-in")  %></li> <li>
+ <%= link_to('Register', new_user_registration_path, :method => :get, class:"btn btn-default fa fa-user" ) %>   
 
   </li>
 <% end %>
@@ -68,7 +68,7 @@
 
 
         <ul class="nav navbar-nav navbar-right">
-          <li class="">
+          <li>
                   <a href="../">Home</a>
                 </li>
            <li><a href="../products/">Products</a></li>            

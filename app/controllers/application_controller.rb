@@ -11,7 +11,22 @@ class ApplicationController < ActionController::Base
      # devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
    # end
 
+ module API
+  extend ActiveSupport::Concern
+
+  included do
+    rescue_from ::CanCan::AccessDenied do
+      error!('403 Forbidden', 403)
+    end
+  end
+  # Convienience method to authorize every route
+  def authorize_routes!
+    before { authorize_route! }
+  end
 end
+  end
+
+
 
 
 def index
