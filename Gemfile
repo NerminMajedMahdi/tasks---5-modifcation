@@ -25,7 +25,7 @@ gem 'devise'
 
 gem 'jquery-rails'
 
-	
+gem 'cancancan', '~> 1.10'	
 
 
 
