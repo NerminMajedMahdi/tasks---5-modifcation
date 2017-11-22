@@ -14,11 +14,12 @@
 
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
-  
      <%= csrf_meta_tag %>
 </head>
 <body>
+
+
+
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -30,7 +31,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to "Nermin |Flowers Market", root_path , class: "navbar-brand" %>
+       
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -38,8 +39,8 @@
 
         <!-- Sign up Log in -->
 
-        <div class="navbar-form navbar-right">
-         <ul class="nav navbar-nav navbar-right">
+        <div class="navbar-form navbar-left">
+         <ul class="nav navbar-nav navbar-left">
               <li>
                   </li>
                 <% if user_signed_in? %>
@@ -61,13 +62,14 @@
 
 
         <!-- Search Box -->
-        <%= form_tag(products_path, method: "get", class: "navbar-form navbar-right") do %>
+       <%= form_tag(products_path, method: "get", class: "navbar-form navbar-right") do %>
                     <%= text_field_tag(:q, "", type: "text", class: "form-control", placeholder: "search text") %>
                     <%= submit_tag("Search", class: "btn btn-primary") %>
+
                 <% end %>
 
 
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-center">
           <li>
                   <a href="../">Home</a>
                 </li>
@@ -101,7 +103,6 @@
     <div class="social-icons">
         <li><a href="https://www.facebook.com/NerminMahdi20" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
         <li><a href="https://twitter.com/nerminmahdi" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
-        <li><a href="https://www.linkedin.com/in/nerminmahdi/" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
     </div>
     <p> &copy; Web Development by Nermin M. Mahdi 2017</p>
 </div>
