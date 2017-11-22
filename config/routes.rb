@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
 
+
+resources :products do
+  resources :comments
+end
 resources :users
 
 devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout' }, :controllers => {:registrations => "user_registrations"}
 
 resources :orders, only: [:index, :show, :create, :destroy]
 
-resources :products
 
 root 'static_pages#landing_page'
 
