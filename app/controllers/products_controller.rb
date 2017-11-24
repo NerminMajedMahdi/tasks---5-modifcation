@@ -2,11 +2,11 @@ class ProductsController < ApplicationController
    before_action :set_product, only: [:show, :edit, :update, :destroy]
 before_action :authenticate_user!, except: [:index, :show]
  
-  # GET /products/1
+ # GET /products/1
   # GET /products/1.json
   def show
-    @comments = @product.comments.paginate(page: params[:page], per_page: 5)
-  end
+  @comments = @product.comments.order("created_at DESC")
+end
 
   # GET /products/new
   def new
