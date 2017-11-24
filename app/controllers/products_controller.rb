@@ -2,21 +2,11 @@ class ProductsController < ApplicationController
    before_action :set_product, only: [:show, :edit, :update, :destroy]
 before_action :authenticate_user!, except: [:index, :show]
  
-
-  # GET /products
-  # GET /products.json
-  def index
-    @products = Product.all
+  # GET /products/1
+  # GET /products/1.json
+  def show
+    @comments = @product.comments.paginate(page: params[:page], per_page: 5)
   end
-
- # GET /products/1
- # GET /products/1.json
- def show
-    @comments = @product.comments.order("created_at DESC").paginate(:page => params[:page], :per_page =>5)
-    @product.viewed!
-
-end
-
 
   # GET /products/new
   def new
@@ -27,6 +17,22 @@ end
   def edit
   end
 
+  # POST /products
+  # POST /products.json
+  def create
+    @product = Product.new(product_params)
+
+    respond_to do |format|
+      if @product.save
+        #format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to products_path, notice: 'Product was successfully created.' }
+        format.json { render :show, status: :created, location: @product }
+      else
+        format.html { render :new }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
@@ -52,26 +58,7 @@ end
     end
   end
 
-def create
-
-  @product = Product.new(product_params)
-
-  respond_to do |format|
-    if @product.save
-      format.html { redirect_to @product, notice: 'product was successfully created.' }
-      format.json { render json: @product, status: :created, location: @product}
-    else
-      format.html { render action: "new" }
-      format.json { render json: @product.errors, status: :unprocessable_entity }
-    end
-  end
-end
-
-
-
-def show
-
-end
+ 
 
 def index
     if params[:q]
@@ -82,6 +69,11 @@ def index
     end
 end
 
+private
+
+  def comment_params
+    params.require(:comment).permit(:user_id, :body, :rating)
+  end
 
 
 
