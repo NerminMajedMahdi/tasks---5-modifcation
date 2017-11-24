@@ -2,11 +2,12 @@ class ProductsController < ApplicationController
    before_action :set_product, only: [:show, :edit, :update, :destroy]
 before_action :authenticate_user!, except: [:index, :show]
  
- # GET /products/1
+ 
+  # GET /products/1
   # GET /products/1.json
   def show
-  @comments = @product.comments.order("created_at DESC")
-end
+  @comments = @product.comments.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
+  end
 
   # GET /products/new
   def new
@@ -24,8 +25,7 @@ end
 
     respond_to do |format|
       if @product.save
-        #format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.html { redirect_to products_path, notice: 'Product was successfully created.' }
+        format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -46,20 +46,7 @@ end
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  # DELETE /products/1
-  # DELETE /products/1.json
-  def destroy
-    @product.destroy
-    respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
- 
-
+end
 def index
     if params[:q]
       search_term = params[:q]

@@ -1,7 +1,5 @@
 class CommentsController < ApplicationController
-
-
-  before_action :set_user, only: [:destroy]
+before_action :set_user, only: [:destroy]
   before_action :authenticate_user!
   load_and_authorize_resource
 
@@ -41,5 +39,4 @@ class CommentsController < ApplicationController
       @user = current_user
     end
 
-end
 end

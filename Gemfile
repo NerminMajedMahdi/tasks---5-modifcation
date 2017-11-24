@@ -31,6 +31,7 @@ gem 'will_paginate', '~> 3.1.0'
 
 
 
+
 # Use Puma as the app server
  gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
